@@ -10,7 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\StubberNet.Infrastructure.LiteDb\StubberNet.Infrastructure.LiteDb.csproj" />
+        <ProjectReference Include="..\StubberNet.Repository.LiteDb\StubberNet.Repository.LiteDb.csproj" />
     </ItemGroup>
 
 </Project>

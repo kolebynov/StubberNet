@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using StubberNet.Core.Abstractions;
-using StubberNet.Core.Models;
+using StubberNet.Core.Models.Project;
+using StubberNet.Core.Services;
 using StubberNet.Web.Dto;
 
 namespace StubberNet.Web.Controllers;
@@ -10,25 +10,25 @@ namespace StubberNet.Web.Controllers;
 public class ProjectsController : ControllerBase
 {
 	private readonly ILogger<ProjectsController> _logger;
-	private readonly IRepositoryFacade _repositoryFacade;
+	private readonly IProjectService _projectService;
 
-	public ProjectsController(ILogger<ProjectsController> logger, IRepositoryFacade repositoryFacade)
+	public ProjectsController(ILogger<ProjectsController> logger, IProjectService projectService)
 	{
-		_logger = logger;
-		_repositoryFacade = repositoryFacade;
+		_logger = logger ?? throw new ArgumentNullException(nameof(logger));
+		_projectService = projectService ?? throw new ArgumentNullException(nameof(projectService));
 	}
 
 	[HttpGet]
-	public async Task<IEnumerable<ProjectDto>> Get()
+	public IAsyncEnumerable<ProjectDto> Get()
 	{
-		var projects = await _repositoryFacade.ProjectRepository.GetItems(null, CancellationToken.None);
-		return projects.Select(x => new ProjectDto { Name = x.Name, Id = x.Id.Value });
+		return _projectService.GetProjects(null, CancellationToken.None)
+			.Select(x => new ProjectDto { Name = x.Name, Id = x.Id.ToGuid(), BasePath = x.BasePath });
 	}
 
 	[HttpPost]
 	public Task Add([FromBody] ProjectDto projectDto)
 	{
-		return _repositoryFacade.ProjectRepository.Add(
-			new Project(ProjectId.Create(projectDto.Id), projectDto.Name), CancellationToken.None);
+		return _projectService.AddProject(
+			new AddProjectModel { Name = projectDto.Name, BasePath = projectDto.BasePath }, CancellationToken.None);
 	}
 }

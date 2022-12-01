@@ -5,8 +5,12 @@ namespace StubberNet.Web.Dto;
 public sealed class ProjectDto
 {
 	[Required]
-	public string Id { get; init; } = null!;
+	public Guid Id { get; init; }
 
 	[Required]
 	public string Name { get; init; } = null!;
+
+	[Required]
+	[RegularExpression("^[\\w_-\\d]+$")]
+	public string BasePath { get; init; } = null!;
 }

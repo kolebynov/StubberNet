@@ -2,7 +2,7 @@
 
 namespace StubberNet.Core.Objects;
 
-public sealed class GetRepositoryItemsQuery<T>
+internal sealed class GetRepositoryItemsQuery<T>
 {
 	public Pagination? Pagination { get; init; }
 

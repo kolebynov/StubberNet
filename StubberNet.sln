@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StubberNet.Core", "src\StubberNet.Core\StubberNet.Core.csproj", "{30F347F1-E174-4FC9-9CD3-5CC78B7BDCF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StubberNet.Infrastructure.LiteDb", "src\StubberNet.Infrastructure.LiteDb\StubberNet.Infrastructure.LiteDb.csproj", "{34AE77DE-7C95-4D78-A0C9-35598FF6DBB3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StubberNet.Repository.LiteDb", "src\StubberNet.Repository.LiteDb\StubberNet.Repository.LiteDb.csproj", "{34AE77DE-7C95-4D78-A0C9-35598FF6DBB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
